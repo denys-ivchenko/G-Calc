@@ -1,0 +1,42 @@
+﻿<UserControl x:Class="Telesyk.GraphCalculator.WPF.UserControls.FunctionElementUserControl"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:Telesyk.GraphCalculator.WPF.UserControls"
+             mc:Ignorable="d" 
+             d:DesignWidth="43" d:DesignHeight="26"
+             Width="Auto" Height="20">
+	<Grid x:Name="grid" Margin="0">
+		<StackPanel Orientation="Horizontal">
+			<AccessText x:Name="textOperation" Foreground="#024884" Margin="1,0,1,0" FontSize="14" HorizontalAlignment="Center" VerticalAlignment="Center" FontFamily="Lucida Console" Text="+" />
+			<Border BorderThickness="1" BorderBrush="Transparent" Cursor="Hand" Height="20">
+				<StackPanel x:Name="panelXn" Height="20" Cursor="Hand" Orientation="Horizontal" ContextMenuOpening="panelXn_ContextMenuOpening" ContextMenuClosing="panelXn_ContextMenuClosing" MouseMove="panelXn_MouseMove" MouseLeave="panelXn_MouseLeave">
+					<TextBlock x:Name="labelBracketOpen" Foreground="#024884" Width="6" VerticalAlignment="Center" FontSize="12" FontFamily="Lucida Console" Text="(" Visibility="Collapsed" />
+					<TextBox x:Name="textEdit" Foreground="#024884" Width="Auto" MaxLength="2" Margin="0,1,1,3" FontSize="12" Padding="-1,0,-3,0" Visibility="Collapsed" Background="Transparent" BorderThickness="0" ContextMenu="{Binding ElementName=menuContext}" TextChanged="textEdit_TextChanged" PreviewTextInput="textEdit_PreviewTextInput" />
+					<AccessText x:Name="textValue" Foreground="#024884" FontSize="12" Margin="1,1,0,0" MouseLeftButtonUp="textValue_MouseLeftButtonUp"  />
+					<AccessText Text="x" Foreground="#024884" FontSize="18" Margin="0,0,0,0" FontFamily="Lucida Console"/>
+					<AccessText x:Name="textPosition" Foreground="#024884" FontSize="9" Margin="0,0,1,3" VerticalAlignment="Bottom" FontFamily="Lucida Console" />
+					<TextBlock x:Name="labelBracketClose" Foreground="#024884" Width="6" Margin="0,0,1,0" VerticalAlignment="Center" FontSize="12" FontFamily="Lucida Console" Text=")" Visibility="Collapsed" />
+					<StackPanel.ContextMenu>
+						<ContextMenu x:Name="menuContext">
+							<MenuItem x:Name="menuAdd" Header="Додати">
+								<!--<MenuItem Header="… · X" Click="menuMultiplication_Click" />-->
+								<MenuItem Header="+x" Click="menuAddition_Click" FontFamily="Lucida Console" />
+								<MenuItem Header="-x" Click="menuSubstraction_Click" FontFamily="Lucida Console" />
+								<!--<MenuItem Header="… : X" Click="menuDivision_Click" />-->
+							</MenuItem>
+							<MenuItem x:Name="menuChange" Header="Змінити на:">
+								<!--<MenuItem Header="… · X" Click="menuChangeMultiplication_Click" />-->
+								<MenuItem x:Name="menuChangeAddtition" Header="+x" Click="menuChangeAddition_Click" FontFamily="Lucida Console" />
+								<MenuItem x:Name="menuChangeSubstraction" Header="-x" Click="menuChangeSubstraction_Click" FontFamily="Lucida Console" />
+								<!--<MenuItem Header="… : X" Click="menuChangeDivision_Click" />-->
+							</MenuItem>
+							<MenuItem x:Name="menuDelete" Header="Видалити" Click="menuDelete_Click" />
+						</ContextMenu>
+					</StackPanel.ContextMenu>
+				</StackPanel>
+			</Border>
+		</StackPanel>
+	</Grid>
+</UserControl>

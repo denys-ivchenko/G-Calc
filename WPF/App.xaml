@@ -1,0 +1,11 @@
+﻿<Application x:Class="Telesyk.GraphCalculator.WPF.App"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:local="clr-namespace:Telesyk.GraphCalculator.WPF"
+             StartupUri="MainWindow.xaml">
+    <Application.Resources>
+		<ResourceDictionary>
+			<Control x:Key="controlTab" Width="324" Height="421" />
+		</ResourceDictionary>
+    </Application.Resources>
+</Application>

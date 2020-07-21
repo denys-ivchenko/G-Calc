@@ -1,0 +1,15 @@
+﻿<UserControl x:Class="Telesyk.GraphCalculator.WPF.UserControls.SetValuesElementUserControl"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:Telesyk.GraphCalculator.WPF.UserControls"
+             mc:Ignorable="d" 
+             d:DesignHeight="32" d:DesignWidth="64">
+	<StackPanel Margin="2" Orientation="Horizontal" Height="25" VerticalAlignment="Bottom" MouseMove="stackPanel_MouseMove" MouseLeave="stackPanel_MouseLeave">
+		<Label x:Name="labelPosition" Margin="0,0,0,0" Content="1:" Foreground="White" />
+		<TextBox x:Name="textEdit" Foreground="#024884" Margin="3,2,0,0" Width="24" Height="16" MaxLength="2" MaxLines="10" HorizontalAlignment="Left" Background="Transparent" Visibility="Collapsed" BorderThickness="0" TextChanged="value_Changed" PreviewTextInput="textEdit_PreviewTextInput" />
+		<Label x:Name="textValue" Foreground="#024884" Width="27" Margin="0" />
+		<Image x:Name="imageDelete" Source="/Telesyk.GraphCalculator.WPF.UserControls;component/images/icon-delete.png" ToolTip="Видалити"  Margin="0,6,0,0" Cursor="Hand" Width="11" Height="11" MouseDown="imageDelete_MouseDown" MouseUp="imageDelete_MouseUp" MouseLeave="imageDelete_MouseLeave"/>
+	</StackPanel>
+</UserControl>

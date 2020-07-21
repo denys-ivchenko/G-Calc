@@ -1,0 +1,78 @@
+﻿<Project Sdk="Microsoft.NET.Sdk.WindowsDesktop">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
+    <UseWPF>true</UseWPF>
+    <AssemblyName>Telesyk.GraphCalculator.WPF.UserControls</AssemblyName>
+    <RootNamespace>Telesyk.GraphCalculator.WPF.UserControls</RootNamespace>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Remove="LimitedFunctions.xaml.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Remove="calculation-alt.png" />
+    <None Remove="calculation-do.png" />
+    <None Remove="calculation-go.png" />
+    <None Remove="calculation-idle.png" />
+    <None Remove="calculation.png" />
+    <None Remove="functions-alt.png" />
+    <None Remove="functions.png" />
+    <None Remove="images\arrow.png" />
+    <None Remove="images\functions-current.png" />
+    <None Remove="images\icon-add-disabled.png" />
+    <None Remove="images\icon-add.png" />
+    <None Remove="images\icon-approve-disabled.png" />
+    <None Remove="images\icon-approve.png" />
+    <None Remove="images\icon-delete.png" />
+    <None Remove="images\icon-edit-disabled.png" />
+    <None Remove="images\icon-edit.png" />
+    <None Remove="images\icon-refresh.png" />
+    <None Remove="images\placements-alt.png" />
+    <None Remove="images\placements.png" />
+    <None Remove="images\value-set-current.png" />
+    <None Remove="limited-functions-alt.png" />
+    <None Remove="limited-functions.png" />
+    <None Remove="placements-alt.png" />
+    <None Remove="placements.png" />
+    <None Remove="value-set-alt.png" />
+    <None Remove="value-set.png" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Page Remove="LimitedFunctions.xaml" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Core\Core.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Resource Include="images\arrow.png" />
+    <Resource Include="images\calculation-alt.png" />
+    <Resource Include="images\calculation-do.png" />
+    <Resource Include="images\calculation-go.png" />
+    <Resource Include="images\calculation-idle.png" />
+    <Resource Include="images\calculation.png" />
+    <Resource Include="images\functions-alt.png" />
+    <Resource Include="images\functions-current.png" />
+    <Resource Include="images\functions.png" />
+    <Resource Include="images\icon-add-disabled.png" />
+    <Resource Include="images\icon-add.png" />
+    <Resource Include="images\icon-approve-disabled.png" />
+    <Resource Include="images\icon-approve.png" />
+    <Resource Include="images\icon-delete.png" />
+    <Resource Include="images\icon-edit-disabled.png" />
+    <Resource Include="images\icon-edit.png" />
+    <Resource Include="images\icon-refresh.png" />
+    <Resource Include="images\limited-functions-alt.png" />
+    <Resource Include="images\limited-functions.png" />
+    <Resource Include="images\placements-alt.png" />
+    <Resource Include="images\placements.png" />
+    <Resource Include="images\value-set-alt.png" />
+    <Resource Include="images\value-set-current.png" />
+    <Resource Include="images\value-set.png" />
+  </ItemGroup>
+
+</Project>

@@ -1,0 +1,18 @@
+﻿<UserControl x:Class="Telesyk.GraphCalculator.WPF.UserControls.LimitedFunctionsUserControl"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:Telesyk.GraphCalculator.WPF.UserControls"
+             mc:Ignorable="d" 
+             d:DesignHeight="421" d:DesignWidth="324" Height="421" Width="324">
+	<StackPanel>
+		<Grid>
+			<TextBlock Grid.Column="0" Foreground="#FFF9EFB8" FontSize="20" Margin="5,0,5,5">Обмежувальні функції</TextBlock>
+			<local:ActionsUserControl x:Name="controlActions" Grid.Column="1" HorizontalAlignment="Right" Margin="0,0,5,0" />
+		</Grid>
+		<StackPanel x:Name="panelFunctions">
+
+		</StackPanel>
+	</StackPanel>
+</UserControl>

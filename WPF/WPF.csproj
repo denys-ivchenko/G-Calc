@@ -1,0 +1,57 @@
+﻿<Project Sdk="Microsoft.NET.Sdk.WindowsDesktop">
+
+  <PropertyGroup>
+    <OutputType>WinExe</OutputType>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
+    <UseWPF>true</UseWPF>
+    <ApplicationIcon>3700412-business-calculating-calculator-finance-maths-technological_108792.ico</ApplicationIcon>
+    <StartupObject>Telesyk.GraphCalculator.WPF.App</StartupObject>
+    <AssemblyName>gcalc</AssemblyName>
+    <RootNamespace>Telesyk.GraphCalculator.WPF</RootNamespace>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Remove="Calculator.xaml.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Remove="images\function-alt.png" />
+    <None Remove="images\function.png" />
+    <None Remove="images\limited-finction-alt.png" />
+    <None Remove="images\limited-function-alt.png" />
+    <None Remove="images\limited-function.png" />
+    <None Remove="images\proccess-do.png" />
+    <None Remove="images\proccess-go.png" />
+    <None Remove="images\proccess-idle.png" />
+    <None Remove="images\process-alt.png" />
+    <None Remove="images\process-do.png" />
+    <None Remove="images\process-go.png" />
+    <None Remove="images\process-idle.png" />
+    <None Remove="images\process.png" />
+    <None Remove="images\set-alt.png" />
+    <None Remove="images\set.png" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Page Remove="Calculator.xaml" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\WPF.UserControls\WPF.UserControls.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Resource Include="images\function-alt.png" />
+    <Resource Include="images\function.png" />
+    <Resource Include="images\limited-function-alt.png" />
+    <Resource Include="images\limited-function.png" />
+    <Resource Include="images\process-alt.png" />
+    <Resource Include="images\process-do.png" />
+    <Resource Include="images\process-go.png" />
+    <Resource Include="images\process-idle.png" />
+    <Resource Include="images\process.png" />
+    <Resource Include="images\set-alt.png" />
+    <Resource Include="images\set.png" />
+  </ItemGroup>
+
+</Project>
