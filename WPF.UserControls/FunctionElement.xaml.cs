@@ -140,8 +140,6 @@ namespace Telesyk.GraphCalculator.WPF.UserControls
 
 		public event OperatorEventHandler OnOperatorChanged;
 
-		public event EventHandler OnChanged;
-
 		#endregion
 
 		#region Overridies
@@ -299,9 +297,6 @@ namespace Telesyk.GraphCalculator.WPF.UserControls
 
 			textEdit.MaxLength = Value < 0 ? 3 : 2;
 			labelBracketOpen.Visibility = labelBracketClose.Visibility = Value < 0 ? Visibility.Visible : Visibility.Collapsed;
-
-			if (OnChanged != null)
-				OnChanged(this, EventArgs.Empty);
 		}
 
 		#endregion
