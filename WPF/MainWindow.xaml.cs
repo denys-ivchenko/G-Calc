@@ -305,7 +305,24 @@ namespace Telesyk.GraphCalculator.WPF
 
 		private void calculator_StateChanged(object sender, CalculatorStateEventArgs args)
 		{
-			//menuSave.IsEnabled = Calculator.Current.MaxState > CalcutatorState.ValueSet;				
+			switch (Calculator.Current.State)
+			{
+				case CalculatorState.SetValues:
+					textState.Text = "Множина значень";
+					break;
+				case CalculatorState.Placement:
+					textState.Text = "Розміщення";
+					break;
+				case CalculatorState.Functions:
+					textState.Text = "Функції";
+					break;
+				case CalculatorState.LimitationFunctions:
+					textState.Text = "Обмежувальні функції";
+					break;
+				default:
+					textState.Text = "Обчислення";
+					break;
+			}
 		}
 
 		private void menuQuit_Click(object sender, RoutedEventArgs e)

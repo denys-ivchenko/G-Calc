@@ -270,25 +270,29 @@ namespace Telesyk.GraphCalculator.WPF.UserControls
 			element.Operator = oper;
 			element.Function = this;
 			element.OnOperatorChanged += element_OnOperatorChanged;
+			element.ValueChanged += element_ValueChanged;
 
-			(position > 5 ? panelWrapedElements : panelElements).Children.Insert(position > 5 ? position - 6 : position - 1, element);
+			//(position > 5 ? panelWrapedElements : panelElements).Children.Insert(position > 5 ? position - 6 : position - 1, element);
+			//_elements.Insert(position - 1, element);
+
+			//if (_elements.Count == 6)
+			//{
+			//	panelContainer.Children.Remove(imageDelete);
+			//	panelContainer.Children.Remove(panelLimitation);
+
+			//	panelWrapedContainer.Children.Add(panelLimitation);
+			//	panelWrapedContainer.Children.Add(imageDelete);
+			//}
+
+			//if (_elements.Count > 5)
+			//{
+			//	textSeparator.Text = _elements[5].Operator == FunctionOperator.Addition ? "+" : "-";
+			//	textSeparator.Visibility = Visibility.Visible;
+			//	panelWrapedContainer.Visibility = Visibility;
+			//}
+
+			panelElements.Children.Insert(position - 1, element);
 			_elements.Insert(position - 1, element);
-
-			if (_elements.Count == 6)
-			{
-				panelContainer.Children.Remove(imageDelete);
-				panelContainer.Children.Remove(panelLimitation);
-
-				panelWrapedContainer.Children.Add(panelLimitation);
-				panelWrapedContainer.Children.Add(imageDelete);
-			}
-
-			if (_elements.Count > 5)
-			{
-				textSeparator.Text = _elements[5].Operator == FunctionOperator.Addition ? "+" : "-";
-				textSeparator.Visibility = Visibility.Visible;
-				panelWrapedContainer.Visibility = Visibility;
-			}
 
 			for (int i = 0; i < _elements.Count; i++)
 				_elements[i].Position = i + 1;
@@ -297,38 +301,43 @@ namespace Telesyk.GraphCalculator.WPF.UserControls
 				foreach (var item in _elements)
 					item.DisableAdding();
 
+			elementChanged();
+
 			if (OnChanged != null)
 				OnChanged(this, new FunctionEventArgs(IsValid));
 		}
 
 		private void removeElement(int position)
 		{
-			(position > 5 ? panelWrapedElements : panelElements).Children.RemoveAt(position > 5 ? position - 6 : position - 1);
-			_elements.RemoveAt(position - 1);
+			//(position > 5 ? panelWrapedElements : panelElements).Children.RemoveAt(position > 5 ? position - 6 : position - 1);
+			//_elements.RemoveAt(position - 1);
 
-			if (panelElements.Children.Count == 4 && panelWrapedElements.Children.Count > 0)
-			{
-				var elementControl = (FunctionElementUserControl)panelWrapedElements.Children[0];
-				panelWrapedElements.Children.RemoveAt(0);
-				panelElements.Children.Insert(4, elementControl);
-			}
+			//if (panelElements.Children.Count == 4 && panelWrapedElements.Children.Count > 0)
+			//{
+			//	var elementControl = (FunctionElementUserControl)panelWrapedElements.Children[0];
+			//	panelWrapedElements.Children.RemoveAt(0);
+			//	panelElements.Children.Insert(4, elementControl);
+			//}
 
-			if (_elements.Count == 5)
-			{
-				panelWrapedContainer.Children.Remove(imageDelete);
-				panelWrapedContainer.Children.Remove(panelLimitation);
+			//if (_elements.Count == 5)
+			//{
+			//	panelWrapedContainer.Children.Remove(imageDelete);
+			//	panelWrapedContainer.Children.Remove(panelLimitation);
 
-				panelContainer.Children.Add(panelLimitation);
-				panelContainer.Children.Add(imageDelete);
-			}
+			//	panelContainer.Children.Add(panelLimitation);
+			//	panelContainer.Children.Add(imageDelete);
+			//}
 
-			if (_elements.Count < 6)
-			{
-				textSeparator.Visibility = Visibility.Collapsed;
-				panelWrapedContainer.Visibility = Visibility.Collapsed;
-			}	
-			else
-				textSeparator.Text = _elements[5].Operator == FunctionOperator.Addition ? "+" : "-";
+			//if (_elements.Count < 6)
+			//{
+			//	textSeparator.Visibility = Visibility.Collapsed;
+			//	panelWrapedContainer.Visibility = Visibility.Collapsed;
+			//}	
+			//else
+			//	textSeparator.Text = _elements[5].Operator == FunctionOperator.Addition ? "+" : "-";
+
+			panelElements.Children.RemoveAt(position - 1);
+		   _elements.RemoveAt(position - 1);
 
 			for (int i = 0; i < _elements.Count; i++)
 				_elements[i].Position = i + 1;
@@ -337,8 +346,15 @@ namespace Telesyk.GraphCalculator.WPF.UserControls
 				foreach (var item in _elements)
 					item.EnableAdding();
 
+			elementChanged();
+
 			if (OnChanged != null)
 				OnChanged(this, new FunctionEventArgs(IsValid));
+		}
+
+		private void elementChanged()
+		{
+			
 		}
 
 		private LimitationFunctionCondition parseLimitedCondition(string value)
@@ -366,16 +382,9 @@ namespace Telesyk.GraphCalculator.WPF.UserControls
 			return LimitationFunctionCondition.GreaterThanOrEqual;
 		}
 
-		private void conditionValue_TextChanged(object sender, TextChangedEventArgs e)
-		{
-			if (string.IsNullOrEmpty(textConditionValue.Text))
-				textConditionValue.Text = "0";
+		#region Handlers
 
-			labelConditionValue.Content = textConditionValue.Text;
-
-			int.TryParse(textConditionValue.Text, out int value);
-			ConditionValue = value;
-		}
+		private void element_ValueChanged(object sender, EventArgs e) => elementChanged();
 
 		private void conditions_SelectionChanged(object sender, SelectionChangedEventArgs e)
 		{
@@ -390,7 +399,34 @@ namespace Telesyk.GraphCalculator.WPF.UserControls
 		private void conditionValue_PreviewTextInput(object sender, TextCompositionEventArgs e)
 		{
 			Regex regex = new Regex("[^0-9]+");
-			e.Handled = regex.IsMatch(e.Text);
+
+			e.Handled = regex.IsMatch(e.Text) && e.Text != "-";
+
+			if (e.Text.StartsWith("-"))
+				textConditionValue.MaxLength = 4;
+		}
+
+		private void conditionValue_TextChanged(object sender, TextChangedEventArgs e)
+		{
+			while (textConditionValue.Text.LastIndexOf('-') > 0)
+				textConditionValue.Text = textConditionValue.Text.Remove(textConditionValue.Text.LastIndexOf('-'), 1);
+
+			if (textConditionValue.Text == "-")
+				labelConditionValue.Content = ConditionValue = -1;
+			else if (!int.TryParse(textConditionValue.Text, out int value))
+				labelConditionValue.Content = ConditionValue = 1;
+			else
+				labelConditionValue.Content = ConditionValue = value;
+
+			textConditionValue.MaxLength = ConditionValue < 0 ? 4 : 3;
+
+			//if (string.IsNullOrEmpty(textConditionValue.Text))
+			//	textConditionValue.Text = "0";
+
+			//labelConditionValue.Content = textConditionValue.Text;
+
+			//int.TryParse(textConditionValue.Text, out int value);
+			//ConditionValue = value;
 		}
 
 		private void imageDelete_MouseDown(object sender, MouseButtonEventArgs e)
@@ -444,6 +480,8 @@ namespace Telesyk.GraphCalculator.WPF.UserControls
 			listConditions.Visibility = textConditionValue.Visibility = Visibility.Collapsed;
 			labelCondition.Visibility = labelConditionValue.Visibility = Visibility.Visible;
 		}
+
+		#endregion
 
 		#endregion
 	}

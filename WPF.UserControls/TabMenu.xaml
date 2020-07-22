@@ -8,19 +8,19 @@
              d:DesignHeight="450" d:DesignWidth="29">
 	<StackPanel Background="#FFF9EFB8">
 		<Border BorderThickness="1" BorderBrush="#FFF9EFB8" Height="23" Width="23" Margin="3,3,3,0" Cursor="Hand">
-			<Image x:Name="imageTabValueSet" ToolTip="Множина" Width="21" Height="21" Source="/Telesyk.GraphCalculator.WPF.UserControls;component/images/value-set.png" Margin="0,0,0,0" MouseMove="imageTab_MouseMove" MouseLeave="imageTab_MouseLeave" MouseDown="imageTab_MouseDown" Tag="value-set" />
+			<Image x:Name="imageTabValueSet" ToolTip="Множина" Width="21" Height="21" Source="/Telesyk.GraphCalculator.WPF.UserControls;component/images/value-set.png" Margin="0,0,0,0" MouseEnter="imageTab_MouseOn" MouseLeave="imageTab_MouseOut" MouseDown="imageTab_MouseDown" Tag="value-set" />
 		</Border>
 		<Border BorderThickness="1" BorderBrush="#FFF9EFB8" Height="23" Width="23" Margin="3,3,3,0" Cursor="Hand">
-			<Image x:Name="imageTabPlacements" ToolTip="Розміщення" Width="21" Height="21" Source="/Telesyk.GraphCalculator.WPF.UserControls;component/images/placements.png" Margin="0,0,0,0" MouseMove="imageTab_MouseMove" MouseLeave="imageTab_MouseLeave" MouseDown="imageTab_MouseDown" Tag="placements" />
+			<Image x:Name="imageTabPlacements" ToolTip="Розміщення" Width="21" Height="21" Source="/Telesyk.GraphCalculator.WPF.UserControls;component/images/placements.png" Margin="0,0,0,0" MouseEnter="imageTab_MouseOn" MouseLeave="imageTab_MouseOut" MouseDown="imageTab_MouseDown" Tag="placements" />
 		</Border>
 		<Border BorderThickness="1" BorderBrush="#FFF9EFB8" Height="23" Width="23" Margin="3,3,3,0" Cursor="Hand">
-			<Image x:Name="imageTabFunctions" ToolTip="Функції" Width="21" Height="21" Source="/Telesyk.GraphCalculator.WPF.UserControls;component/images/functions.png" MouseMove="imageTab_MouseMove" MouseLeave="imageTab_MouseLeave" MouseDown="imageTab_MouseDown" Tag="functions"/>
+			<Image x:Name="imageTabFunctions" ToolTip="Функції" Width="21" Height="21" Source="/Telesyk.GraphCalculator.WPF.UserControls;component/images/functions.png" MouseEnter="imageTab_MouseOn" MouseLeave="imageTab_MouseOut" MouseDown="imageTab_MouseDown" Tag="functions"/>
 		</Border>
 		<Border ToolTip="Обмежувальні функції" BorderThickness="1" BorderBrush="#FFF9EFB8" Height="23" Width="23" Margin="3,3,3,0" Cursor="Hand">
-			<Image x:Name="imageTabLimitedFunctions" Width="21" Height="21" Source="/Telesyk.GraphCalculator.WPF.UserControls;component/images/limited-functions.png" MouseMove="imageTab_MouseMove" MouseLeave="imageTab_MouseLeave" MouseDown="imageTab_MouseDown" Tag="limited-functions"/>
+			<Image x:Name="imageTabLimitedFunctions" Width="21" Height="21" Source="/Telesyk.GraphCalculator.WPF.UserControls;component/images/limited-functions.png" MouseEnter="imageTab_MouseOn" MouseLeave="imageTab_MouseOut" MouseDown="imageTab_MouseDown" Tag="limited-functions"/>
 		</Border>
-		<Border ToolTip="Обчислювання" BorderThickness="1" BorderBrush="#FFF9EFB8" Height="23" Width="23" Margin="3,3,3,0" Cursor="Hand">
-			<Image x:Name="imageTabProcess" Width="21" Height="21" Source="/Telesyk.GraphCalculator.WPF.UserControls;component/images/calculation.png" MouseMove="imageTab_MouseMove" MouseLeave="imageTab_MouseLeave" MouseDown="imageTab_MouseDown" Tag="calculation"/>
+		<Border ToolTip="Обчислення" BorderThickness="1" BorderBrush="#FFF9EFB8" Height="23" Width="23" Margin="3,3,3,0" Cursor="Hand">
+			<Image x:Name="imageTabProcess" Width="21" Height="21" Source="/Telesyk.GraphCalculator.WPF.UserControls;component/images/calculation.png" MouseEnter="imageTab_MouseOn" MouseLeave="imageTab_MouseOut" MouseDown="imageTab_MouseDown" Tag="calculation"/>
 		</Border>
 		<!--<Image Width="3" Height="5"  Source="/Telesyk.GraphCalculator.WPF.UserControls;component/images/arrow.png" />-->
 	</StackPanel>

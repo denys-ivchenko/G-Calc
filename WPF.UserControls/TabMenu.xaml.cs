@@ -57,20 +57,26 @@ namespace Telesyk.GraphCalculator.WPF.UserControls
 			setCurrentTab();
 		}
 
-		private void imageTab_MouseMove(object sender, MouseEventArgs e)
+		private void imageTab_MouseOn(object sender, MouseEventArgs e)
 		{
 			var image = (Image)sender;
 			var border = (Border)image.Parent;
 
 			border.BorderBrush = new SolidColorBrush(Color.FromRgb(0x61, 0xBB, 0xF9));
+
+			if (_currentTabName != (string)image.Tag)
+				border.Background = new SolidColorBrush(Color.FromRgb(0xff, 0xff, 0xff));
 		}
 
-		private void imageTab_MouseLeave(object sender, MouseEventArgs e)
+		private void imageTab_MouseOut(object sender, MouseEventArgs e)
 		{
 			var image = (Image)sender;
 			var border = (Border)image.Parent;
 
 			border.BorderBrush = new SolidColorBrush(Color.FromRgb(0xF9, 0xEF, 0xB8));
+
+			if (_currentTabName != (string)image.Tag)
+				border.Background = new SolidColorBrush(Color.FromRgb(0xf9, 0xef, 0xb8));
 		}
 
 		private void imageTab_MouseDown(object sender, MouseButtonEventArgs e) => setCurrentTab((Image)sender);
@@ -135,7 +141,7 @@ namespace Telesyk.GraphCalculator.WPF.UserControls
 			//if (getStateByKey(_currentTabName) == Calculator.Current.State)
 			//	imageName += "-current";
 
-			border.Background = new SolidColorBrush(Color.FromRgb(0x42, 0x43, 0x44));
+			border.Background = new SolidColorBrush(Color.FromRgb(0x3a, 0x51, 0x68));
 			image.Source = new BitmapImage(new Uri($"pack://application:,,,/Telesyk.GraphCalculator.WPF.UserControls;component/images/{imageName}.png"));
 		}
 
@@ -145,43 +151,43 @@ namespace Telesyk.GraphCalculator.WPF.UserControls
 			imageTabProcess.Source = new BitmapImage(new Uri($"pack://application:,,,/calculation-do.png"));
 		}
 
-		private CalculatorState getStateByKey(string key)
-		{
-			switch (key)
-			{
-				case "value-set":
-					return CalculatorState.SetValues;
-				case "placements":
-					return CalculatorState.Placement;
-				case "functions":
-					return CalculatorState.Placement;
-				case "limited-functions":
-					return CalculatorState.Placement;
-				case "calculation":
-					return CalculatorState.Calculating;
-			}
+		//private CalculatorState getStateByKey(string key)
+		//{
+		//	switch (key)
+		//	{
+		//		case "value-set":
+		//			return CalculatorState.SetValues;
+		//		case "placements":
+		//			return CalculatorState.Placement;
+		//		case "functions":
+		//			return CalculatorState.Placement;
+		//		case "limited-functions":
+		//			return CalculatorState.Placement;
+		//		case "calculation":
+		//			return CalculatorState.Calculating;
+		//	}
 
-			return CalculatorState.Calculated;
-		}
+		//	return CalculatorState.Calculated;
+		//}
 
-		private string getKeyByState(CalculatorState state)
-		{
-			switch (state)
-			{
-				case CalculatorState.SetValues:
-					return "value-set";
-				case CalculatorState.Placement:
-					return "placements";
-				case CalculatorState.Functions:
-					return "functions";
-				case CalculatorState.LimitationFunctions:
-					return "limited-functions";
-				case CalculatorState.Calculating:
-					return "calculation";
-			}
+		//private string getKeyByState(CalculatorState state)
+		//{
+		//	switch (state)
+		//	{
+		//		case CalculatorState.SetValues:
+		//			return "value-set";
+		//		case CalculatorState.Placement:
+		//			return "placements";
+		//		case CalculatorState.Functions:
+		//			return "functions";
+		//		case CalculatorState.LimitationFunctions:
+		//			return "limited-functions";
+		//		case CalculatorState.Calculating:
+		//			return "calculation";
+		//	}
 
-			return "calculated";
-		}
+		//	return "calculated";
+		//}
 
 		private string getTabImageName(bool isAlt)
 		{

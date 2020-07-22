@@ -5,17 +5,17 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:Telesyk.GraphCalculator.WPF.UserControls"
              mc:Ignorable="d" 
-             d:DesignHeight="421" d:DesignWidth="415" Width="415">
+             d:DesignHeight="295" d:DesignWidth="673" Height="295" Width="673">
 	<StackPanel>
 		<TextBlock Grid.Column="0" Foreground="#FFF9EFB8" FontSize="20" Margin="5,0,0,0">Обчислення</TextBlock>
 		<StackPanel Orientation="Horizontal">
 			<Label Foreground="#024884" Target="{Binding ElementName=listThreading}">Багатопоточне обчислення:</Label>
-			<ComboBox x:Name="listThreading" Width="200" Margin="21,2,0,0" Foreground="#024884">
+			<ComboBox x:Name="listThreading" Width="200" Height="26" Margin="8,0,0,0" Foreground="#024884" IsEnabled="false">
 				<ComboBoxItem IsSelected="True" ToolTip="Обчислювання відбуватиметься без розбивки задач на окремі потоки">Не використовувати</ComboBoxItem>
 				<ComboBoxItem ToolTip="Обчислення розбиватиметься на окремі потоки для кожного значення множини як X1 у розміщенні">За елементами множини</ComboBoxItem>
 				<ComboBoxItem ToolTip="Розпаралелювання задач бібліотеки TPL">Паралелізм TPL</ComboBoxItem>
 			</ComboBox>
-		</StackPanel>
-		<Button HorizontalAlignment="Right" Width="Auto" Foreground="#024884" Margin="5,9,5,1" FontSize="11" Height="20" Padding="4,0,4,1" Cursor="Hand" Background="#FFF9EFB8" Click="Button_Click" MouseLeave="button_MouseLeave" MouseRightButtonUp="button_MouseUp">Розпочати обчислювання</Button>
+			<Button HorizontalAlignment="Right" Width="Auto" IsEnabled="False" Foreground="#024884" Margin="8,0,0,0" FontSize="11" Height="26" Padding="4,0,4,1" Cursor="Hand" Background="#FFF9EFB8" Click="Button_Click" MouseLeave="button_MouseLeave" MouseRightButtonUp="button_MouseUp">Розпочати обчислювання</Button>
+	</StackPanel>
 	</StackPanel>
 </UserControl>
