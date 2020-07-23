@@ -37,7 +37,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\WPF.UserControls\WPF.UserControls.csproj" />
+    <ProjectReference Include="..\UserControls\UserControls.csproj" />
   </ItemGroup>
 
   <ItemGroup>
