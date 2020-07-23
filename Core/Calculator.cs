@@ -53,11 +53,11 @@ namespace Telesyk.GraphCalculator
 
 		public CalculatorState MaxState { get; private set; } = CalculatorState.Undefined;
 
+		public Function CombinedFunction { get; private set; }
+
 		#endregion
 
 		#region Public methods
-
-		public void Calculate() => calculate();
 
 		public void Start()
 		{
@@ -78,6 +78,8 @@ namespace Telesyk.GraphCalculator
 		public void Clear() => clear();
 
 		public static XmlNode InsertNodeToXml(XmlNode parent, string name) => insertNodeToXml(parent, name);
+
+		public IDictionary<int, DublicateIndex> GetDublicateIndexesOfSetVelues() => getDublicateIndexesOfSetVelues();
 
 		#region Add/Remove
 
@@ -170,70 +172,6 @@ namespace Telesyk.GraphCalculator
 
 		#region Private methods
 
-		#region Calculating
-
-		private void calculate()
-		{
-			var functCombined = getCombinedFunction();
-
-			
-		}
-
-		private bool isInLimitations(int[] combination)
-		{
-			foreach(var limitation in LimitationFunctions)
-			{
-				decimal result = 0;
-			
-				for(int i = 0; i < limitation.Elements.Count; i++)
-				{
-					var value = limitation.Elements[i].Value * combination[i];
-					result = limitation.Elements[i].Operator == FunctionOperator.Addition ? result + value : result - value;
-				}
-
-				if (limitation.Condition == LimitationFunctionCondition.LessThan && !(result < limitation.ConditionValue))
-					return false;
-
-				if (limitation.Condition == LimitationFunctionCondition.LessThanOrEqual && !(result <= limitation.ConditionValue))
-					return false;
-
-				if (limitation.Condition == LimitationFunctionCondition.GreaterThanOrEqual && !(result >= limitation.ConditionValue))
-					return false;
-
-				if (limitation.Condition == LimitationFunctionCondition.GreaterThan && !(result > limitation.ConditionValue))
-					return false;
-			}
-
-			return true;
-		}
-
-		private Function getCombinedFunction()
-		{
-			if (State < CalculatorState.LimitationFunctions)
-				return null;
-
-			Function combined = new Function();
-
-			for (int i = 0; i < Calculator.Current.Placement; i++)
-			{
-				decimal value = 0;
-
-				foreach(var function in Functions)
-					if (function.Elements[i].Operator == FunctionOperator.Addition)
-						value += function.Elements[i].Value;
-					else
-						value -= function.Elements[i].Value;
-
-				value /= Functions.Count;
-
-				combined.AddElement(FunctionOperator.Addition, value);
-			}
-
-			return combined;
-		}
-
-		#endregion
-
 		private void clear()
 		{
 			State = MaxState = CalculatorState.Undefined;
@@ -256,6 +194,12 @@ namespace Telesyk.GraphCalculator
 
 		private void stateChanged()
 		{
+			if (State == CalculatorState.LimitationFunctions)
+				CombinedFunction = getCombinedFunction();
+
+			if (State < CalculatorState.LimitationFunctions)
+				CombinedFunction = null;
+		
 			if (StateChanged != null)
 				StateChanged(this, new CalculatorStateEventArgs(this, State));
 		}
@@ -274,6 +218,39 @@ namespace Telesyk.GraphCalculator
 				action();
 			else
 				throw new CalculatorWrongStateActionException(State, actionState, executionAction);
+		}
+
+		private Function getCombinedFunction()
+		{
+			Function combined = new Function();
+
+			for (int i = 0; i < Placement; i++)
+			{
+				decimal value = 0;
+
+				foreach (var function in Functions)
+					if (function.Elements[i].Operator == FunctionOperator.Addition)
+						value += function.Elements[i].Value;
+					else
+						value -= function.Elements[i].Value;
+
+				value /= Functions.Count;
+
+				combined.AddElement(FunctionOperator.Addition, value);
+			}
+
+			return combined;
+		}
+
+		public Dictionary<int, DublicateIndex> getDublicateIndexesOfSetVelues()
+		{
+			Dictionary<int, DublicateIndex> dublicates = new Dictionary<int, DublicateIndex>();
+
+			for (int i = 0; i < SetValues.Count; i++)
+				if (_setValues.IndexOf(SetValues[i]) < i)
+					dublicates.Add(i, new DublicateIndex(i, _setValues.IndexOf(SetValues[i])));
+
+			return dublicates;
 		}
 
 		#endregion

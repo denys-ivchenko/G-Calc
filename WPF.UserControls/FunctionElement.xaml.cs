@@ -26,7 +26,7 @@ namespace Telesyk.GraphCalculator.WPF.UserControls
 		private int _position;
 		private FunctionOperator _operator = FunctionOperator.Addition;
 		private bool _contextMenuOpened;
-		private int _value;
+		private decimal _value;
 
 		#endregion
 
@@ -62,7 +62,7 @@ namespace Telesyk.GraphCalculator.WPF.UserControls
 			}
 		}
 
-		public int Value
+		public decimal Value
 		{
 			get { return _value; }
 			set

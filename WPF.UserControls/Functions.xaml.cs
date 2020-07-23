@@ -238,6 +238,32 @@ namespace Telesyk.GraphCalculator.WPF.UserControls
 		private void calculator_StateChanged(object sender, CalculatorStateEventArgs args)
 		{
 			controlActions.MustApprove = isMustApprove();
+
+			if (!IsLimitation && Calculator.Current.State > CalculatorState.LimitationFunctions)
+			{
+				panelCombined.Visibility = Visibility.Visible;
+
+				string text = null;
+
+				for (int i = 0; i < Calculator.Current.CombinedFunction.Elements.Count; i++)
+				{
+					string value = $"{Math.Abs(Calculator.Current.CombinedFunction.Elements[i].Value).ToString("0.###")}";
+
+					if (i == 0 && Calculator.Current.CombinedFunction.Elements[i].Value < 0)
+						value = $"-{value}";
+
+					char oper = Calculator.Current.CombinedFunction.Elements[i].Value < 0 ? '-' : '+';
+
+					if (i != 0)
+						text += $" {oper} ";
+
+					text += $"{value}x{i + 1}";
+				}
+
+				textCombined.Text = text;
+			}
+			else
+				panelCombined.Visibility = Visibility.Collapsed;
 		}
 
 		private void function_OnError(object sender, ErrorEventArgs args)

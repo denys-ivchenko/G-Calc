@@ -8,7 +8,7 @@
 		x:Name="GraphCalculator" 
 		x:Class="Telesyk.GraphCalculator.WPF.MainWindow"
         mc:Ignorable="d"
-        Title="Калькулятор графів" Width="720"  Height="373" ResizeMode="CanMinimize" FontSize="14" WindowStyle="SingleBorderWindow">
+        Title="Калькулятор графів" Width="720"  Height="415" ResizeMode="CanMinimize" FontSize="14" WindowStyle="SingleBorderWindow">
 	<Grid Background="#FF61BBF9">
 		<Grid.ColumnDefinitions>
 			<ColumnDefinition Width="31" />

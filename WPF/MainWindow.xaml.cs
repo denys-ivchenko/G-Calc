@@ -93,6 +93,7 @@ namespace Telesyk.GraphCalculator.WPF
 			controlPlacement.SetPlacement(0);
 			controlFunctions.Clear();
 			controlLimitationFunctions.Clear();
+			controlCalculation.Clear();
 		}
 
 		private void saveFile()
