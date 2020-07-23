@@ -110,13 +110,13 @@ namespace Telesyk.GraphCalculator
 					{
 						Combinations++;
 					
-						if (isInLimitations(indexes))
+						if (isInLimitations(indexes, out decimal[] deltas))
 						{
 							decimal value = getFunctionValue(Calculator.CombinedFunction, indexes);
 
 							if (Math.Abs(value) <= ResultValue || Results.Count == 0)
 							{
-								Combination result = new Combination(Calculator, value, indexes);
+								Combination result = new Combination(Calculator, value, indexes, deltas);
 
 								if (Math.Abs(value) < ResultValue || Results.Count == 0)
 								{
@@ -136,11 +136,16 @@ namespace Telesyk.GraphCalculator
 				_eachCombinations(usedIndexes, true);
 		}
 
-		private bool isInLimitations(int[] valueIndexes)
+		private bool isInLimitations(int[] valueIndexes, out decimal[] deltas)
 		{
-			foreach (var function in Calculator.LimitationFunctions)
+			deltas = new decimal[Calculator.LimitationFunctions.Count];
+
+			for (int i = 0; i <  Calculator.LimitationFunctions.Count; i++)
 			{
+				var function = Calculator.LimitationFunctions[i];
+
 				decimal result = getFunctionValue(function, valueIndexes);
+				deltas[i] = function.Condition == LimitationFunctionCondition.LessThan || function.Condition == LimitationFunctionCondition.LessThanOrEqual ? result + function.ConditionValue : result - function.ConditionValue;
 
 				if (function.Condition == LimitationFunctionCondition.LessThan && !(result < function.ConditionValue))
 					return false;

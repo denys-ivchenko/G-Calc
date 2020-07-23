@@ -234,7 +234,7 @@ namespace Telesyk.GraphCalculator
 					else
 						value -= function.Elements[i].Value;
 
-				value /= Functions.Count;
+				value = value / (decimal)Functions.Count;
 
 				combined.AddElement(FunctionOperator.Addition, value);
 			}

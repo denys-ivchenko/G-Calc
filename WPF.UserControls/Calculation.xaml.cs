@@ -92,10 +92,10 @@ namespace Telesyk.GraphCalculator.WPF.UserControls
 			//addResultTextBlock(panelResultInfo, "Комбінацій результату", task.Result.Results.Count.ToString());
 
 			for (int i = 0; i < task.Result.Results.Count; i++)
-				addResult(task.Result.Results[i].Key);
+				addResult(task.Result.Results[i].Key, task.Result.Results[i].Deltas);
 		}
 
-		private void addResult(string value)
+		private void addResult(string value, IReadOnlyList<decimal> deltas)
 		{
 			TextBlock text = new TextBlock();
 			panelResults.Children.Add(text);
@@ -103,14 +103,13 @@ namespace Telesyk.GraphCalculator.WPF.UserControls
 			text.Margin = new Thickness(5, 3, 5, 3);
 			text.Text = value;
 
-			//Run runTitle = new Run();
-			//textDuration.Inlines.Add(runTitle);
-			//runTitle.Text = title + value ?? ": ";
-
-			//Run runValue = new Run();
-			//textDuration.Inlines.Add(runValue);
-			//runValue.Foreground = new SolidColorBrush(Color.FromRgb(0x02, 0x48, 0x84));
-			//runValue.Text = value;
+			for (int i = 0; i < deltas.Count; i++)
+			{ 
+				Run runDelta = new Run();
+				text.Inlines.Add(runDelta);
+				runDelta.Foreground = new SolidColorBrush(Color.FromRgb(0x02, 0x48, 0x84));
+				runDelta.Text = " " + deltas[i];
+			}
 		}
 
 		#region Handlers

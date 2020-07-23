@@ -15,7 +15,7 @@ namespace Telesyk.GraphCalculator
 
 		#region Constructors
 
-		public Combination(Calculator calculator, decimal value, int[] valueIndexes)
+		public Combination(Calculator calculator, decimal value, int[] valueIndexes, decimal[] deltas)
 		{
 			Value = value;
 
@@ -23,6 +23,8 @@ namespace Telesyk.GraphCalculator
 
 			for (int i = 0; i < valueIndexes.Length; i++)
 				elements[i] = calculator.SetValues[valueIndexes[i]];
+
+			Deltas = new ReadOnlyCollection<decimal>(deltas);
 		
 			_elements = new ReadOnlyCollection<int>(elements);
 
@@ -37,6 +39,8 @@ namespace Telesyk.GraphCalculator
 		public string Key { get; }
 
 		public IReadOnlyList<int> Elements => _elements;
+
+		public IReadOnlyList<decimal> Deltas { get; }
 
 		public decimal Value { get; }
 
